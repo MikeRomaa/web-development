@@ -1,0 +1,47 @@
+body {
+    background-color: #fafdff;
+    font-family: 'Ubuntu';
+}
+
+#collection, .coin {
+    text-align: center;
+}
+
+#coins {
+    display: flex;
+}
+
+.img-container {
+    position: relative;
+    height: 150px;
+    width: 100px;
+}
+
+.coin {
+    width: 200px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.coin img {
+    position: absolute;
+}
+
+button {
+    background-color: #3d98d538;
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    transition: 200ms;
+}
+
+button:hover {
+    background-color: #3d98d54b;
+}
+
+
+button:active {
+    background-color: #3d98d582;
+}

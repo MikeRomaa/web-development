@@ -1,0 +1,134 @@
+<!-- 
+    Michael Romashov
+    Web Development - Section 83
+    September 30th, 2021
+
+    Level 1 - Count de Money
+
+    This level was really easy as it uses the most basic
+    HTML elements and JS functionality. I am very familiar
+    with everything covered in the lesson so I honestly
+    just skimmed through most of it. I decided to use some
+    more advanced techniques for this project just to
+    "stretch out" so to speak, and actually really enjoyed
+    making this.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Count de Money</title>
+
+        <!-- Load stylesheets and font files -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+        <link rel="stylesheet" href="./index.css">
+    </head>
+    <body>
+        <!-- 
+            Preload images so they don't have to load later
+            when we actually want them to display
+        -->
+        <div style="display: none">
+            <img src="./img/penny.png">
+            <img src="./img/nickel.png">
+            <img src="./img/dime.png">
+            <img src="./img/quarter.png">
+            <img src="./img/half-dollar.png">
+            <img src="./img/dollar.png">
+        </div>
+
+        <!-- This will display the monetary value of all the coins -->
+        <h1 id="collection">Your collection is worth $<span id="total">0.00</span></h1>
+
+        <!-- 
+            Each "coin" div contains the header text, a counter
+            for the current amount of the given coin, and an empty
+            div where JavaScript can insert images into, and
+            buttons to add or subtract coins from the pile
+        -->
+        <div id="coins">
+            <div class="coin">
+                <h4>Penny</h4>
+                <div class="img-container" id="pennies-img"></div>
+                <p>You have <span id="pennies">0</span> pennies.</p>
+                <div>
+                    <button onClick="setPennies(1)">+1</button>
+                    <button onClick="setPennies(-1)">-1</button>
+                </div>
+                <div>
+                    <button onClick="setPennies(5)">+5</button>
+                    <button onClick="setPennies(-5)">-5</button>
+                </div>
+            </div>
+            <div class="coin">
+                <h4>Nickel</h4>
+                <div class="img-container" id="nickels-img"></div>
+                <p>You have <span id="nickels">0</span> nickels.</p>
+                <div>
+                    <button onClick="setNickels(1)">+1</button>
+                    <button onClick="setNickels(-1)">-1</button>
+                </div>
+                <div>
+                    <button onClick="setNickels(5)">+5</button>
+                    <button onClick="setNickels(-5)">-5</button>
+                </div>
+            </div>
+            <div class="coin">
+                <h4>Dime</h4>
+                <div class="img-container" id="dimes-img"></div>
+                <p>You have <span id="dimes">0</span> dimes.</p>
+                <div>
+                    <button onClick="setDimes(1)">+1</button>
+                    <button onClick="setDimes(-1)">-1</button>
+                </div>
+                <div>
+                    <button onClick="setDimes(5)">+5</button>
+                    <button onClick="setDimes(-5)">-5</button>
+                </div>
+            </div>
+            <div class="coin">
+                <h4>Quarter</h4>
+                <div class="img-container" id="quarters-img"></div>
+                <p>You have <span id="quarters">0</span> quarters.</p>
+                <div>
+                    <button onClick="setQuarters(1)">+1</button>
+                    <button onClick="setQuarters(-1)">-1</button>
+                </div>
+                <div>
+                    <button onClick="setQuarters(5)">+5</button>
+                    <button onClick="setQuarters(-5)">-5</button>
+                </div>
+            </div>
+            <div class="coin">
+                <h4>Half-Dollar</h4>
+                <div class="img-container" id="half-dollars-img"></div>
+                <p>You have <span id="half-dollars">0</span> half-dollars.</p>
+                <div>
+                    <button onClick="setHalfDollars(1)">+1</button>
+                    <button onClick="setHalfDollars(-1)">-1</button>
+                </div>
+                <div>
+                    <button onClick="setHalfDollars(5)">+5</button>
+                    <button onClick="setHalfDollars(-5)">-5</button>
+                </div>
+            </div>
+            <div class="coin">
+                <h4>Dollar</h4>
+                <div class="img-container" id="dollars-img"></div>
+                <p>You have <span id="dollars">0</span> dollars.</p>
+                <div>
+                    <button onClick="setDollars(1)">+1</button>
+                    <button onClick="setDollars(-1)">-1</button>
+                </div>
+                <div>
+                    <button onClick="setDollars(5)">+5</button>
+                    <button onClick="setDollars(-5)">-5</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading in our script file that has all of the coin counting logic -->
+        <script src="./index.js"></script>
+    </body>
+</html>
