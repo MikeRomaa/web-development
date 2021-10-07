@@ -1,0 +1,60 @@
+<!-- 
+    Michael Romashov
+    Web Development - Section 83
+    October 4th, 2021
+
+    Level 2 - Match Game
+
+    I really enjoyed making this game and I am really proud of
+    the end result. The process of creating it mostly went well,
+    apart from a small set back when I was trying to interpolate
+    the flipping animation (as it turns out it was just colliding
+    CSS selectors). All of this was review of known concepts for
+    me, but it was still really fun to make. One thing that I
+    found funny upon reviewing my code was how I basically
+    implemented a really basic component system for the tiles
+    because I've been using React so much lately.
+
+    Credit to https://opengameart.org/users/kenney for the game assets.
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Match Game</title>
+
+        <!-- Load stylesheets and font files -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+        <link rel="stylesheet" href="./index.css">
+    </head>
+    <body onload="reset()">
+        <div id="container">
+            <div id="menu">
+                <h1>Welcome to the Match Game!</h1>
+                <h2>Score: <span id="score">0</span></h2>
+                <p>
+                    The goal of this game is to reveal every tile in the grid below. Each time you
+                    click on a tile, it will be flipped over to reveal an image. You must then click
+                    on another tile with a matching image.
+                </p>
+                <p>If you click on a tile with a different image, both tiles will flip back over.</p>
+                <p>If you click on a matching tile, both tiles will remain flipped.</p>
+                <button onclick="reset()">Reset</button>
+            </div>
+
+            <!-- JavaScript will insert the tile elements into this div -->
+            <div id="tiles"></div>
+
+            <!-- Win screen fills entire screen when all tiles are flipped -->
+            <div id="win">
+                <h1>You win! 🥳</h1>
+                <p>Congratulations</p>
+                <button onclick="reset()">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Loading in our script file that has the game logic -->
+        <script src="./index.js"></script>
+    </body>
+</html>
