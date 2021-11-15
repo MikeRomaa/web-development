@@ -1,0 +1,33 @@
+<!-- 
+    Michael Romashov
+    Web Development - Section 83
+    November 1st, 2021
+
+    Level 4 - Picture Puzzle
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Picture Puzzle</title>
+
+        <!-- Load stylesheets and font files -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+        <link rel="stylesheet" href="./index.css">
+    </head>
+    <!-- <body onload="loadImage('https://assets.change.org/photos/4/ha/gy/gQHaGYTrcTWOFrx-800x450-noPad.jpg')"> -->
+    <body onload="loadImage('https://i.pinimg.com/originals/ba/e8/23/bae82312ee7e96e22987459541037281.png')">
+        <button onclick="toggleGuide()">Toggle Guide</button>
+        <div id="puzzle">
+            <div id="guide">
+                <table id="grid"></table>
+            </div>
+        </div>
+        <div id="tiles"></div>
+
+        <!-- Loading in our script file that has all of the game logic -->
+        <script src="./drag.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>
