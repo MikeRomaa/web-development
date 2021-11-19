@@ -17,11 +17,17 @@
         <link rel="stylesheet" href="./index.css">
     </head>
     <!-- <body onload="loadImage('https://assets.change.org/photos/4/ha/gy/gQHaGYTrcTWOFrx-800x450-noPad.jpg')"> -->
-    <body onload="loadImage('https://www.biography.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5MzY1NzE4NDk4NzQ3NzI1/gettyimages-150742993.jpg')">
+    <body>
+        <label for="inputURL">Your image's URL:</label>
+        <input type="url" id="inputURL" name="link">
+        <button onclick="loadImage()">Submit</button>
+        <br />
         <button onclick="toggleGuide()">Toggle Guide</button>
-        <div id="puzzle">
-            <div id="guide">
-                <table id="grid"></table>
+        <div id="container">
+            <div id="puzzle">
+                <div id="guide">
+                    <table id="grid"></table>
+                </div>
             </div>
         </div>
         <div id="tiles"></div>

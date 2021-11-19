@@ -1,6 +1,7 @@
 const puzzle = document.getElementById('puzzle');
 const guide = document.getElementById('guide');
 const tileContainer = document.getElementById('tiles');
+const imageRetrieval = document.getElementById('inputURL');
 
 let image;
 let tiles = [];
@@ -10,7 +11,8 @@ let showGuide = false;
  * Loads the image into a global variable.
  * @param {string} src Image URI
  */
-function loadImage(src) {
+function loadImage() {
+
     const img = new Image();
     // Run rest of program when the image loads.
     img.onload = () => {
@@ -20,7 +22,7 @@ function loadImage(src) {
         guide.replaceChildren(image);
         splitImage(5, 5);
     }
-    img.src = src;
+    img.src = imageRetrieval.value;
 }
 
 /**

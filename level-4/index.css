@@ -3,8 +3,14 @@ body {
     font-family: 'Ubuntu';
 }
 
+#container {
+    align-items: center;
+    width: 100%;
+}
+
 #puzzle {
     position: relative;
+    display: flex;
 }
 
 ::selection {
