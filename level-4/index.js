@@ -2,6 +2,8 @@ const puzzle = document.getElementById('puzzle');
 const guide = document.getElementById('guide');
 const tileContainer = document.getElementById('tiles');
 const imageRetrieval = document.getElementById('inputURL');
+const heightRetrieval = document.getElementById('heightPuzzlePieces');
+const widthRetrieval = document.getElementById('widthPuzzlePieces');
 
 let image;
 let tiles = [];
@@ -20,7 +22,7 @@ function loadImage() {
         puzzle.style = `width: ${img.width}px;
                         height: ${img.height}px;`
         guide.replaceChildren(image);
-        splitImage(5, 5);
+        splitImage(heightRetrieval.value, widthRetrieval.value);
     }
     img.src = imageRetrieval.value;
 }
