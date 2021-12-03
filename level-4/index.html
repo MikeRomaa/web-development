@@ -18,16 +18,24 @@
     </head>
     <!-- <body onload="loadImage('https://assets.change.org/photos/4/ha/gy/gQHaGYTrcTWOFrx-800x450-noPad.jpg')"> -->
     <body>
-        <label for="inputURL">Your image's URL:</label>
-        <input type="url" id="inputURL" name="link">
-        <button onclick="loadImage()">Submit</button>
-        <br />
-        <button onclick="toggleGuide()">Toggle Guide</button>
-        <!-- height and width of the puzzle, being the inputs and outputs:-->
-        <label for="heightPuzzlePieces"></label>
-        <input type="number" id="heightPuzzlePieces" name="height">
-        <label for="widthPuzzlePieces"></label>
-        <input type="number" id="widthPuzzlePieces" name="width">
+        <div id="content">
+            <div class="UI">
+                <label for="inputURL">Your image's URL:</label>
+                <input type="url" id="inputURL" name="link">
+                <button onclick="loadImage()">Submit</button>
+                <br />
+            </div>
+            <!-- height and width of the puzzle, being the inputs and outputs:-->
+            <div class="UI">
+                <label for="heightPuzzlePieces">Length:</label>
+                <input type="number" id="heightPuzzlePieces" name="height">
+                <label for="widthPuzzlePieces">Width:</label>
+                <input type="number" id="widthPuzzlePieces" name="width">
+            </div>
+            <div class="UI">
+                <button onclick="toggleGuide()">Toggle Guide</button>
+            </div>
+        </div>
         
         <div id="container">
             <div id="puzzle">
