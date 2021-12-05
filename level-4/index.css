@@ -3,6 +3,10 @@ body {
     font-family: 'Ubuntu';
 }
 
+canvas {
+    cursor: pointer;
+}
+
 #content {
     display: flex;
     align-items: center;
@@ -58,5 +62,4 @@ body {
 
 #tiles canvas {
     margin: 10px;
-    cursor: pointer;
 }

@@ -16,11 +16,16 @@ function loadImage() {
     const img = new Image();
     // Run rest of program when the image loads.
     img.onload = () => {
+        const height = parseInt(heightRetrieval.value);
+        const width = parseInt(widthRetrieval.value);
         image = img;
-        puzzle.style = `width: ${img.width}px;
+        puzzleContainer.style = `width: ${img.width}px;
                         height: ${img.height}px;`
         guide.replaceChildren(image);
-        splitImage(heightRetrieval.value, widthRetrieval.value);
+        splitImage(height, width);
+        
+        // Generate matrix of size width * height for storing puzzle state
+        puzzle = Array(height).fill().map(()=>Array(width).fill());
     }
     img.src = imageRetrieval.value;
 }
@@ -61,6 +66,7 @@ function imageTile(row, col, width, height) {
 
     canvas.width = width;
     canvas.height = height;
+    canvas.id = `${row},${col}`
 
     ctx.drawImage(image, width * col, height * row, width, height, 0, 0, width, height);
 
@@ -82,4 +88,28 @@ function toggleGuide() {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+function renderPuzzle() {
+    for (let y = 0; y < puzzle.length; y++) {
+        for (let x = 0; x < puzzle[y].length; x++) {
+            const element = puzzle[y][x];
+            if (element) {
+                const newElement = puzzleContainer.appendChild(element);
+                newElement.style.position = 'absolute';
+                newElement.style.transform = `translate(${x * element.clientWidth}px,
+                                                        ${y * element.clientHeight}px)`;
+            }
+        }
+    }
+}
+
+function removeFromPuzzle(element) {
+    for (let col = 0; col < puzzle.length; col++) {
+        for (let row = 0; row < puzzle[col].length; row++) {
+            if (puzzle[col][row] === element) {
+                puzzle[col][row] = undefined;
+            }
+        }
+    }
 }

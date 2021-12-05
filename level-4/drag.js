@@ -1,4 +1,4 @@
-const puzzle = document.getElementById('puzzle');
+const puzzleContainer = document.getElementById('puzzle');
 const tileContainer = document.getElementById('tiles');
 
 let element = undefined;
@@ -6,6 +6,8 @@ let startX = 0;
 let startY = 0;
 let dx = 0;
 let dy = 0;
+
+let puzzle = [];
 
 /**
  * Sets the initial drag location when mouse is clicked.
@@ -41,25 +43,29 @@ function endDrag(event) {
     if (element === undefined) return;
 
     const position = calculatePosition(element);
-    
-    const inXBounds = position.x <= puzzle.clientWidth;
-    const inYBounds = position.y <= puzzle.clientHeight;
-    // Check if the image is on top of the board or not.
-    if (inXBounds && inYBounds) {
-        const x = Math.round(position.x / element.clientWidth);
-        const y = Math.round(position.y / element.clientHeight);
 
-        const newElement = puzzle.appendChild(element);
-        newElement.style.position = 'absolute';
-        newElement.style.transform = `translate(${x * element.clientWidth}px, 
-                                             ${y * element.clientHeight}px)`;
+    const x = Math.round(position.x / element.clientWidth);
+    const y = Math.round(position.y / element.clientHeight);
+
+    // Check if the image is on top of the board or not.
+    if (x < puzzle[0].length && y < puzzle.length) {
+        if (!puzzle[y][x]) {
+            removeFromPuzzle(element);
+            puzzle[y][x] = element;
+        } else {
+            element.style.position = null;
+            element.style.transform = null;
+        }
     } else {
-        puzzle.removeChild(element);
-        tileContainer.appendChild(element);
+        if (puzzleContainer.contains(element)) {
+            removeFromPuzzle(element);
+            element = tileContainer.appendChild(element);
+        }
         element.style.position = null;
         element.style.transform = null;
     }
     element = undefined;
+    renderPuzzle();
 }
 
 document.addEventListener('mousedown', startDrag);
@@ -72,10 +78,10 @@ document.addEventListener('mouseup', endDrag);
  * @return {{x: number, y: number}} coordinates
  */
 function calculatePosition(element) {
-    const matches = element.style.transform.match(/[-]?[\d]+/g) ?? [0, 0];
+    const matches = element.style.transform.match(/[-]?[\d]+/g) ?? [];
     const transform = {
-        x: parseFloat(matches[0]),
-        y: parseFloat(matches[1]),
+        x: parseFloat(matches[0] ?? 0),
+        y: parseFloat(matches[1] ?? 0),
     };
     return {
         x: element.offsetLeft + transform.x,
