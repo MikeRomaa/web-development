@@ -1,6 +1,4 @@
-const puzzle = document.getElementById('puzzle');
 const guide = document.getElementById('guide');
-const tileContainer = document.getElementById('tiles');
 const imageRetrieval = document.getElementById('inputURL');
 const heightRetrieval = document.getElementById('heightPuzzlePieces');
 const widthRetrieval = document.getElementById('widthPuzzlePieces');
@@ -36,6 +34,8 @@ function loadImage() {
 function splitImage(rows, cols) {
     const tileWidth = image.width / cols;
     const tileHeight = image.height / rows;
+
+    tiles = [];
 
     for (let x = 0; x < rows; x++) {
         for (let y = 0; y < cols; y++) {

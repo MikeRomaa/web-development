@@ -1,4 +1,5 @@
-const board = document.getElementById('puzzle');
+const puzzle = document.getElementById('puzzle');
+const tileContainer = document.getElementById('tiles');
 
 let element = undefined;
 let startX = 0;
@@ -14,8 +15,10 @@ function startDrag(event) {
     if (!event.target || event.target.localName !== 'canvas') return;
 
     element = event.target;
-    startX = event.clientX;
-    startY = event.clientY;
+
+    const position = calculatePosition(element);
+    startX = event.clientX - position.x + element.offsetLeft;
+    startY = event.clientY - position.y + element.offsetTop;
 }
 
 /**
@@ -36,14 +39,24 @@ function doDrag(event) {
  */
 function endDrag(event) {
     if (element === undefined) return;
+
+    const position = calculatePosition(element);
     
-    const inXBounds = board.offsetLeft + board.clientWidth > event.clientX;
-    const inYBounds = board.offsetTop + board.clientHeight > event.clientY;
+    const inXBounds = position.x <= puzzle.clientWidth;
+    const inYBounds = position.y <= puzzle.clientHeight;
     // Check if the image is on top of the board or not.
     if (inXBounds && inYBounds) {
-        // TODO: Snap image to grid location.
+        const x = Math.round(position.x / element.clientWidth);
+        const y = Math.round(position.y / element.clientHeight);
+
+        const newElement = puzzle.appendChild(element);
+        newElement.style.position = 'absolute';
+        newElement.style.transform = `translate(${x * element.clientWidth}px, 
+                                             ${y * element.clientHeight}px)`;
     } else {
-        // Reset position if it is out bounds
+        puzzle.removeChild(element);
+        tileContainer.appendChild(element);
+        element.style.position = null;
         element.style.transform = null;
     }
     element = undefined;
@@ -52,3 +65,20 @@ function endDrag(event) {
 document.addEventListener('mousedown', startDrag);
 document.addEventListener('mousemove', doDrag);
 document.addEventListener('mouseup', endDrag);
+
+/**
+ * Returns the x and y coordinates of an element relative to it's parent element.
+ * @param {Element}
+ * @return {{x: number, y: number}} coordinates
+ */
+function calculatePosition(element) {
+    const matches = element.style.transform.match(/[-]?[\d]+/g) ?? [0, 0];
+    const transform = {
+        x: parseFloat(matches[0]),
+        y: parseFloat(matches[1]),
+    };
+    return {
+        x: element.offsetLeft + transform.x,
+        y: element.offsetTop + transform.y,
+    }
+}
