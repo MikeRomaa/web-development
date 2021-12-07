@@ -1,18 +1,35 @@
 const guide = document.getElementById('guide');
+const selectImage = document.getElementById('selectImage')
 const imageRetrieval = document.getElementById('inputURL');
 const heightRetrieval = document.getElementById('heightPuzzlePieces');
 const widthRetrieval = document.getElementById('widthPuzzlePieces');
+const winScreen = document.getElementById('win');
+const scoreSpan = document.getElementById('score');
 
 let image;
 let tiles = [];
-let showGuide = false;
+let score = 0;
+
+function reset() {
+    score = 0;
+    scoreSpan.textContent = 0;
+    winScreen.classList.remove('show');
+    loadImage(image.src);
+}
+
+function loadImageFromSelect() {
+    loadImage(selectImage.value);
+}
+
+function loadImageFromURL() {
+    loadImage(imageRetrieval.value);
+}
 
 /**
  * Loads the image into a global variable.
  * @param {string} src Image URI
  */
-function loadImage() {
-
+function loadImage(src) {
     const img = new Image();
     // Run rest of program when the image loads.
     img.onload = () => {
@@ -23,11 +40,17 @@ function loadImage() {
                         height: ${img.height}px;`
         guide.replaceChildren(image);
         splitImage(height, width);
-        
+
+        var children = puzzleContainer.children;
+        for (var i = children.length - 1; i >= 0; i--) {
+            if (children[i].nodeName === 'CANVAS') {
+                puzzleContainer.removeChild(children[i]);
+            }
+        }
         // Generate matrix of size width * height for storing puzzle state
         puzzle = Array(height).fill().map(()=>Array(width).fill());
     }
-    img.src = imageRetrieval.value;
+    img.src = src;
 }
 
 /**
@@ -66,15 +89,10 @@ function imageTile(row, col, width, height) {
 
     canvas.width = width;
     canvas.height = height;
-    canvas.id = `${row},${col}`
+    canvas.id = `${col},${row}`
     ctx.drawImage(image, width * col, height * row, width, height, 0, 0, width, height);
 
     return canvas;
-}
-
-function toggleGuide() {
-    showGuide = !showGuide;
-    guide.className = showGuide ? 'shown' : '';
 }
 
 /**
@@ -87,6 +105,11 @@ function toggleGuide() {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+function incrementScore() {
+    score++;
+    scoreSpan.textContent = score;
 }
 
 function renderPuzzle() {
@@ -111,4 +134,16 @@ function removeFromPuzzle(element) {
             }
         }
     }
+}
+
+function checkPuzzle() {
+    for (let y = 0; y < puzzle.length; y++) {
+        for (let x = 0; x < puzzle[y].length; x++) {
+            const element = puzzle[y][x];
+            if (element === undefined || element.id !== `${x},${y}`) return;
+        }
+    }
+    
+    // Show win screen
+    winScreen.classList.add('show');
 }

@@ -52,6 +52,7 @@ function endDrag(event) {
         if (!puzzle[y][x]) {
             removeFromPuzzle(element);
             puzzle[y][x] = element;
+            incrementScore();
         } else {
             element.style.position = null;
             element.style.transform = null;
@@ -66,6 +67,7 @@ function endDrag(event) {
     }
     element = undefined;
     renderPuzzle();
+    checkPuzzle();
 }
 
 document.addEventListener('mousedown', startDrag);

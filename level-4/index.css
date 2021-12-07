@@ -7,6 +7,10 @@ canvas {
     cursor: pointer;
 }
 
+small {
+    color: blue;
+}
+
 #content {
     display: flex;
     align-items: center;
@@ -21,6 +25,14 @@ canvas {
     align-items: center;
 }
 
+#header {
+    display: flex;
+}
+
+#directions {
+    margin-right: 50px;
+}
+
 .UI {
     justify-content: space-around;
     flex: 1;
@@ -28,7 +40,6 @@ canvas {
 
 #container {
     position: relative;
-    align-items: center;
     width: 100%;
 }
 
@@ -37,7 +48,7 @@ canvas {
     display: flex;
 }
 
-::selection {
+#container::selection {
     background-color: none;
 }
 
@@ -53,10 +64,6 @@ canvas {
 #guide img {
     width: 100%;
     height: 100%;
-    opacity: 0%;
-}
-
-#guide.shown img {
     opacity: 35%;
 }
 
@@ -67,4 +74,41 @@ canvas {
 
 #tiles canvas {
     margin: 10px;
+}
+
+#win {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: 400ms ease-in;
+    pointer-events: none;
+    opacity: 0;
+}
+
+#win.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-1 {
+    margin-bottom: 0.5em;
+}
+
+
+.mb-2 {
+    margin-bottom: 2.5em;
 }
