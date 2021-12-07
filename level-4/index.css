@@ -12,8 +12,13 @@ canvas {
     align-items: center;
     flex-direction: column;
     margin: 50x;
-    justify-content:space-between;
+    align-content: space-between;
     margin: 0 5px;
+    gap: 15px;
+}
+
+#title {
+    align-items: center;
 }
 
 .UI {

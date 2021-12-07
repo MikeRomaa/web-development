@@ -67,7 +67,6 @@ function imageTile(row, col, width, height) {
     canvas.width = width;
     canvas.height = height;
     canvas.id = `${row},${col}`
-
     ctx.drawImage(image, width * col, height * row, width, height, 0, 0, width, height);
 
     return canvas;
