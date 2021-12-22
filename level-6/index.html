@@ -1,0 +1,112 @@
+<!-- 
+    Michael Romashov
+    Web Development - Section 83
+    December 9th, 2021
+
+    Level 6 - Disjunction Wireless
+
+    
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Disjunction Wireless Analytics</title>
+
+        <!-- Load stylesheets and font files -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+        <link rel="stylesheet" href="./index.css">
+    </head>
+    <body>
+        <h1>Disjunction Wireless</h1>
+        <h5><em>Serving Small Town since December 31st, 1969</em></h5>
+
+        <div id="pricing">
+            <div class="card-sucker">
+                <h2 class="badge badge-sucker">Sucker</h2>
+                <p>$4.99 / month</p>
+                <p>2&cent; per megabyte</p>
+            </div>
+            <div>
+                <h2 class="badge badge-basic">Basic</h2>
+                <p>$19.99 / month</p>
+                <p>1 GB data free</p>
+                <p>10&cent; per megabyte</p>
+            </div>
+            <div>
+                <h2 class="badge badge-comprehensive">Comprehensive</h2>
+                <p>$24.99 / month</p>
+                <p>4 GB data free</p>
+                <p>25&cent; per megabyte</p>
+            </div>
+            <div>
+                <h2 class="badge badge-unlimited">Unlimited</h2>
+                <p>$49.99 / month</p>
+                <p>Unlimited data</p>
+            </div>
+        </div>
+
+        <p>
+            <b><span id="num-sucker">0</span></b> people on <span class="badge badge-sucker">Sucker</span> plan.
+            If everyone used this plan, the company would net a profit of <b>$<span id="profit-sucker"></span></b>.
+        </p>
+        <p>
+            <b><span id="num-basic">0</span></b> people on <span class="badge badge-basic">Basic</span> plan.
+            If everyone used this plan, the company would net a profit of <b>$<span id="profit-basic"></span></b>.
+        </p>
+        <p>
+            <b><span id="num-comprehensive">0</span></b> people on <span class="badge badge-comprehensive">Comprehensive</span> plan.
+            If everyone used this plan, the company would net a profit of <b>$<span id="profit-comprehensive"></span></b>.
+        </p>
+        <p>
+            <b><span id="num-unlimited">0</span></b> people on <span class="badge badge-unlimited">Unlimited</span> plan.
+            If everyone used this plan, the company would net a profit of <b>$<span id="profit-unlimited"></span></b>.
+        </p>
+        <p>
+            The best plan for the company is <span id="best-plan" class="badge"></span>
+            <b><span id="best-percentage"></span>%</b> of customers are on this plan.
+        </p>
+        <p>
+            The worst plan for the company is <span id="worst-plan" class="badge"></span>
+            <b><span id="worst-percentage"></span>%</b> of customers are on this plan.
+        </p>
+        <p>On average, people overpay the cheapest plan by <b>$<span id="overpay"></span></b>.</p>
+
+        <div id="table-controls">
+            <div>
+                <label for="page-size">Page Size</label>
+                <select name="page-size" onchange="updatePageSize()">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+            </div>
+            <div>
+                Page <span id="current-page">1</span> of <span id="total-pages">1</span>
+            </div>
+            <div>
+                <button id="prev-page" class="page-ctl" onclick="prevPage()" disabled>&lt;</button>
+                <button id="next-page" class="page-ctl" onclick="nextPage()">&gt;</button>
+            </div>
+        </div>
+        <div id="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Plan</th>
+                        <th>Data Usage</th>
+                        <th>Amount Billed</th>
+                    </tr>
+                </thead>
+                <tbody id="datatable"></tbody>
+            </table>
+        </div>
+
+        <!-- Loading in our script file that has the program logic -->
+        <script src="./index.js"></script>
+    </body>
+</html>

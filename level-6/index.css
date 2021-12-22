@@ -1,0 +1,148 @@
+body {
+    background-color: #fafdff;
+    font-family: 'Ubuntu';
+    padding: 3% 10%;
+}
+
+#pricing {
+    display: flex;
+    justify-content: center;
+}
+
+#pricing div {
+    box-shadow: 5px 5px 20px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 5px 20px;
+    flex: 1;
+}
+
+#pricing h2 {
+    margin-bottom: 10px;
+}
+
+#pricing h4 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#pricing p {
+    color: #444;
+}
+
+#pricing div:nth-child(even) {
+    margin: 0 25px;
+}
+
+table {
+    width: 100%;
+    overflow: hidden;
+}
+
+table th {
+    font-weight: bold;
+    padding: 20px;
+}
+
+tbody td {
+    text-align: center;
+    padding: 7px 20px;
+}
+
+.badge {
+    padding: 5px 13px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+table .badge {
+    font-size: 0.7em;
+}
+
+.badge-sucker {
+    color: rgb(77, 230, 77);
+    background-color: rgba(77, 230, 77, 0.2);
+}
+
+.badge-basic {
+    color: rgb(52, 130, 217);
+    background-color: rgba(52, 130, 217, 0.2);
+}
+
+.badge-comprehensive {
+    color: rgb(122, 52, 217);
+    background-color: rgba(122, 52, 217, 0.2);
+}
+
+.badge-unlimited {
+    color: rgb(237, 66, 118);
+    background-color: rgba(237, 66, 118, 0.2);
+}
+
+#table-controls {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+#table-controls div {
+    margin: 5px;
+}
+
+#current-page, #total-pages, .page-ctl {
+    font-weight: bold;
+}
+
+select, .page-ctl {
+    font-size: 0.8em;
+}
+
+.page-ctl {
+    background-color: rgba(168, 168, 168, 0.5);
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    border: none;
+    outline: none;
+    transition: 100ms;
+}
+
+.page-ctl:disabled {
+    background-color: rgba(168, 168, 168, 0.25);
+}
+
+.page-ctl:active {
+    box-shadow: 0 0 0 4px rgba(168, 168, 168, 0.3)
+}
+
+@media(max-width: 1400px) {
+    body {
+        font-size: 40px;
+        text-align: center;
+    }
+    
+    #pricing, #table-controls {
+        flex-direction: column;
+    }
+
+    #pricing div {
+        margin: 0 0 50px !important;
+    }
+
+    #table-controls div {
+        margin: 10px;
+    }
+
+    .page-ctl {
+        width: 100px;
+        height: 100px;
+    }
+
+    #table-container {
+        overflow-x: scroll;
+    }
+
+    table {
+        min-width: 2000px;
+    }
+}
